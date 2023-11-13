@@ -89,7 +89,22 @@
     let $list = $('ol');
     $list.append("<li>Here's an unordered list element</li>");
 
-    $("aside").empty().append("<p>Sorry for the list's existence!</p>")
+    $("aside").empty().append("<p>Sorry for the list's existence!</p>");
+
+    let $colors = $("input");
+    console.log("$colors input", $colors);
+
+    let red = $colors[0].value;
+    let blue = $colors[1].value;
+    let green = $colors[2].value;
+
+    // TODO: Check if there is a better way, mixing jQuery with vanilla JS
+    $(".form-control").on("change", function () {
+      let red = $colors[0].value;
+      let blue = $colors[1].value;
+      let green = $colors[2].value;
+      $("body").css("background-color", `rgb(${red}, ${green}, ${blue})`);
+    })
   </script>
 </body>
 
