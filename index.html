@@ -74,7 +74,20 @@
 </div>
 <script src="https://unpkg.com/jquery"></script>
 <script>
-  // Add your code here!
+  "use strict";
+  let $articles = $("article");
+  $articles
+    .find('img')
+    .addClass('image-center');
+  let $lastParagraph = $('article p:last-child')
+  console.log($lastParagraph);
+  $lastParagraph.remove();
+
+  let randomFontSize = Math.floor(Math.random() * 101);
+
+  let $title = $('#title');
+  $title.css('font-size', `${randomFontSize}px`);
+
 </script>
 </body>
 
