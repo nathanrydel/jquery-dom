@@ -94,17 +94,16 @@
     let $colors = $("input");
     console.log("$colors input", $colors);
 
-    let red = $colors[0].value;
-    let blue = $colors[1].value;
-    let green = $colors[2].value;
-
-    // TODO: Check if there is a better way, mixing jQuery with vanilla JS
     $(".form-control").on("change", function () {
-      let red = $colors[0].value;
-      let blue = $colors[1].value;
-      let green = $colors[2].value;
+      let red = $colors.eq(0).val(); //let red = $colors[0].value;
+      let blue = $colors.eq(1).val() //$colors[1].value;
+      let green = $colors.eq(2).val() //$colors[2].value;
       $("body").css("background-color", `rgb(${red}, ${green}, ${blue})`);
     })
+
+    let $targetImage = $("img");
+    //TODO: Why isn't this working with an arrow function??
+    $targetImage.on("click", function(){this.remove();});
   </script>
 </body>
 
