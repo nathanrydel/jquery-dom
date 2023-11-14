@@ -1,17 +1,24 @@
 "use strict";
-// TODO: Handle form submission
-// Capture the values for each input
-// add them to the #movie-container
+
+const $button = $('<button class="remove">test</button>');
 
 $("form").on("submit", function (evt) {
   const $formInput = $("input");
   const $movieTitle = $formInput.eq(0).val();
   const $movieRating = $formInput.eq(1).val();
 
-  $("#movie-container").append("<div>").append(`Title: ${$movieTitle}, Rating: ${$movieRating}`);
+  //$("#movie-container").append("<div class='movie'>").append(`Title: ${movieTitle}, Rating: ${movieRating}`);
+  const movie = $("<div>",  {text:`${$movieTitle} ${$movieRating}`}).addClass('movie');
+  $("#movie-container").append(movie);
+  //const $button = $('<button class="remove">test</button>');
+  $('.movie').append($button);
+  console.log($button);
   evt.preventDefault();
 });
-//TODO:
-// add a button to each movie entry that removes it from the DOM
 
-// TODO: Handle button click that removes movie entry
+$('#movie-container').on('click','.movie',removeButton);
+
+/** Ignores what we did above and just finds a way to remove the right div */
+function removeButton(evt){
+  $(evt.target).parent().remove(); //FIXME: i hate this
+}
