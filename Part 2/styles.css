@@ -1,3 +1,16 @@
+body {
+  background: black;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  color: white;
+}
+
+header,
+main {
+  display: flex;
+  justify-content: center;
+}
+
+
 .movie-entries {
   margin: 45px 10px;
 }
