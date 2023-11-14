@@ -1,17 +1,16 @@
 "use strict";
 
-const $button = $('<button class="delete-btn">Delete</button>');
+const $deleteBtn = $('<button class="delete-btn">Delete</button>');
 
 $("form").on("submit", function (evt) {
   const $formInput = $("input");
   const $movieTitle = $formInput.eq(0).val();
   const $movieRating = $formInput.eq(1).val();
 
-  //$("#movie-container").append("<div class='movie'>").append(`Title: ${movieTitle}, Rating: ${movieRating}`);
+  // TODO: Refactor to separate ratings from titles
   const movie = $("<div>", { text: `${$movieTitle} ${$movieRating}` }).addClass('movie');
   $("#movie-container").append(movie);
-  //const $button = $('<button class="remove">test</button>');
-  $('.movie').append($button);
+  $('.movie').append($deleteBtn);
   evt.preventDefault();
 });
 
