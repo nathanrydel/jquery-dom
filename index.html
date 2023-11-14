@@ -73,7 +73,7 @@
   <script src="https://unpkg.com/jquery"></script>
   <script>
     "use strict";
-    let $articles = $("article");
+    let $articles = $("article"); //could have done $('article img')
     $articles
       .find('img')
       .addClass('image-center');
@@ -102,8 +102,9 @@
     })
 
     let $targetImage = $("img");
-    //TODO: Why isn't this working with an arrow function??
-    $targetImage.on("click", function(){this.remove();});
+
+    $targetImage.on("click", (evt)=>($(evt.target).remove()));
+
   </script>
 </body>
 
