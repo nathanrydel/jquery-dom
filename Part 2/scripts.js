@@ -16,12 +16,13 @@ function addMovie(evt) {
     let movieRating = $("#movie-rating").val();
 
     let movieData = { movieTitle, movieRating, currentMovieId };
-    // create the necessary HTML to append movie to DOM, use a generator function
+    // create the necessary HTML to append movie to DOM, using a generator func
+    const movieHTML = createMovieDataHTML(movieData);
 
     currentMovieId++;
     moviesList.push(movieData);
 
-    $("#movie-container").append(); // Add generated HTML to DOM
+    $("#movie-container").append(movieHTML); // Add generated HTML to DOM
     $("#new-movie-form").trigger("reset"); // reset form after submission
 
 }
