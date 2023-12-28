@@ -71,41 +71,7 @@
     </div>
   </div>
   <script src="https://unpkg.com/jquery"></script>
-  <script>
-    "use strict";
-    let $articles = $("article"); //could have done $('article img')
-    $articles
-      .find('img')
-      .addClass('image-center');
-    let $lastParagraph = $('article p:last-child');
-    console.log($lastParagraph);
-    $lastParagraph.remove();
-
-    let randomFontSize = Math.floor(Math.random() * 101);
-
-    let $title = $('#title');
-    $title.css('font-size', `${randomFontSize}px`);
-
-    let $list = $('ol');
-    $list.append("<li>Here's an unordered list element</li>");
-
-    $("aside").empty().append("<p>Sorry for the list's existence!</p>");
-
-    let $colors = $("input");
-    console.log("$colors input", $colors);
-
-    $(".form-control").on("change", function () {
-      let red = $colors.eq(0).val(); //let red = $colors[0].value;
-      let blue = $colors.eq(1).val() //$colors[1].value;
-      let green = $colors.eq(2).val() //$colors[2].value;
-      $("body").css("background-color", `rgb(${red}, ${green}, ${blue})`);
-    })
-
-    let $targetImage = $("img");
-
-    $targetImage.on("click", (evt)=>($(evt.target).remove()));
-
-  </script>
+  <script src="scripts.js"></script>
 </body>
 
 </html>
