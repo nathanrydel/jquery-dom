@@ -121,8 +121,8 @@ function createMovieDataHTML(data) {
     console.debug("createMovieDataHTML ran");
     return `
         <tr>
-            <td>${data.movieTitle}</td>
-            <td>${data.movieRating}</td>
+            <td class="ps-4 pt-3">${data.movieTitle}</td>
+            <td class="pt-3">${data.movieRating}</td>
             <td>
                 <button
                     class="btn btn-danger"
