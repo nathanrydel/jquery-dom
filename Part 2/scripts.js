@@ -51,6 +51,67 @@ function deleteMovie(evt) {
 $("tbody").on("click", ".btn.btn-danger", deleteMovie);
 
 /**
+ * Handle sorting and updating the table when the sort arrow is clicked, toggle
+ * the direction of the arrow based on current state
+ *
+ * @param {Event} evt - Event object created when the sort arrow is clicked
+ */
+
+function toggleAndSortMovies(evt) {
+    console.debug("toggleAndSortMovies ran", moviesList);
+    // figure out what direction we are sorting and the key to sort by
+    let direction = $(evt.target).hasClass("bi-sort-down") ? "down" : "up";
+    let keyToSortBy = $(evt.target).attr("id");
+    console.log(keyToSortBy);
+    let sortedMovies = sortBy(moviesList, keyToSortBy, direction);
+
+    // empty the table
+    $("#movie-table-body").empty();
+
+    // loop over our object of sortedMovies and append a new row
+    for (let movie of sortedMovies) {
+        const movieHTML = createMovieDataHTML(movie);
+        $("#movie-table-body").append(movieHTML);
+    }
+
+    // toggle the arrow
+    $(evt.target).toggleClass("bi-sort-down");
+    $(evt.target).toggleClass("bi-sort-up");
+}
+
+$(".bi").on("click", toggleAndSortMovies);
+
+/**
+ * Accepts array, keyToSortBy, and a direction to handle the logic of sorting
+ *  moviesList
+ *
+ * @param {string[]} array - An array of HTML strings
+ * @param {string} keyToSortBy - What to sort by, either title or rating
+ * @param {string} direction - Sort array down(ascending) or up(descending) order
+ * @returns {number} - A numerical explanation of direction to sort (-1, 0, 1)
+ */
+
+function sortBy(array, keyToSortBy, direction) {
+    console.debug("sortBy ran", moviesList);
+
+    // const newArray = array.slice();
+
+    return array.sort(function (a, b) {
+        // since rating is a number, we have to convert these strings to numbers
+        if (keyToSortBy === "movieRating") {
+            a[keyToSortBy] = +a[keyToSortBy];
+            b[keyToSortBy] = +b[keyToSortBy];
+        }
+        if (a[keyToSortBy] > b[keyToSortBy]) {
+            return direction === "up" ? 1 : -1;
+        } else if (b[keyToSortBy] > a[keyToSortBy]) {
+            return direction === "up" ? -1 : 1;
+        }
+        return 0;
+    });
+}
+
+/**
  * Takes a form submission event object with title, rating, returns str of HTML
  * @param {SubmitEvent Object} evt - Data from new movie form
  * @returns {string} - HTML to add a new movie to the table as a str
