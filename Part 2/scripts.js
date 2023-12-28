@@ -1,23 +1,24 @@
 "use strict";
 
-const $button = $('<button class="delete-btn">Delete</button>');
+let currentMovieId = 0;
+let moviesList = [];
 
-$("form").on("submit", function (evt) {
-  const $formInput = $("input");
-  const $movieTitle = $formInput.eq(0).val();
-  const $movieRating = $formInput.eq(1).val();
-
-  const $movie = $("<div>").addClass('movie');
-  $movie.append("<span>" + $movieTitle + "</span>");
-  $movie.append("<span>" + $movieRating + "</span>");
-  $movie.append($button.clone());
-  $("#movie-container").append($movie);
+function addMovie(evt) {
   evt.preventDefault();
-});
 
-$('#movie-container').on('click', '.delete-btn', deleteMovieEntry);
+  let movieTitle = $("#movie-title").val();
+  let movieRating = $("#movie-rating").val();
 
-/** Ignores what we did above and just finds a way to remove the right div */
-function deleteMovieEntry(evt) {
-  $(evt.target).closest(".movie").remove();
+  let movieData = { movieTitle, movieRating, currentMovieId };
+  // create the necessary HTML to append movie to DOM, use a generator function
+
+  currentMovieId++;
+  moviesList.push(movieData);
+
+  $("#movie-container").append(); // Add generated HTML to DOM
+  $("#new-movie-form").trigger("reset"); // reset form after submission
+
 }
+
+$("#new-movie-form").on("submit", addMovie)
+
